@@ -1,0 +1,33 @@
+{
+  "name": "toolbox-api-challenge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "test": "mocha src/**/tests.js",
+    "start": "node src/server.js",
+    "dev": "nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/ldss95/toolbox-api-challenge.git"
+  },
+  "author": "Luis Santiago",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ldss95/toolbox-api-challenge/issues"
+  },
+  "homepage": "https://github.com/ldss95/toolbox-api-challenge#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "swagger-jsdoc": "^6.2.5",
+    "swagger-ui-express": "^4.5.0"
+  },
+  "devDependencies": {
+    "chai": "^4.3.6",
+    "mocha": "^10.0.0",
+    "nodemon": "^2.0.20"
+  }
+}

@@ -10,7 +10,19 @@
  *  get:
  *      tags: [Files]
  *      summary: Obtiene la lista con todos los archivos en formato JSON
+ *      parameters:
+ *          - in: query
+ *            name: fileName
+ *            description: Nombre del archivo a consultar
+ *            required: false
+ *            schema:
+ *              type: string
+ *              example: test2.csv
  *      responses:
+ *          400:
+ *              description: Invalid file
+ *          404:
+ *              description: File not found
  *          200:
  *              description: OK
  *              content:

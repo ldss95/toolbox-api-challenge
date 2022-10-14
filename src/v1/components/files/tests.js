@@ -43,7 +43,7 @@ describe('Archivos', () => {
     })
   })
 
-  describe('Endpoint para listar archivos', () => {
+  describe('GET /files/data', () => {
     it('Deberia obtener todos los archivos en formato JSON', async () => {
       const { body, status } = await chai.request(app)
         .get('/v1/files/data')
@@ -63,6 +63,20 @@ describe('Archivos', () => {
       expect(firstline).to.have.property('text')
       expect(firstline).to.have.property('number')
       expect(firstline).to.have.property('hex')
+    })
+  })
+
+  describe('GET /files/list', () => {
+    it('Deberia obtener una lista de archivos disponibles', async () => {
+      const { body, status } = await chai.request(app)
+        .get('/v1/files/list')
+
+      assert.equal(status, 200)
+      expect(body).to.be.an('object')
+
+      // Validamos el primer elemento
+      expect(body).to.have.property('files')
+      expect(body.files).to.be.an('array')
     })
   })
 })

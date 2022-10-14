@@ -9,10 +9,10 @@ app.set('port', 3000)
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(
-	cors({
-		origin: (_, callback) => callback(null, true),
-		credentials: true
-	})
+  cors({
+    origin: (_, callback) => callback(null, true),
+    credentials: true
+  })
 )
 
 app.use('/v1', v1Routes)

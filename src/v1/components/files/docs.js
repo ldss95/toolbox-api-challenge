@@ -38,3 +38,24 @@
  *                                                  type: string
  *                                                  example: ec3a3a0b54fea1d2b40333a4a75b2c53
  */
+
+/**
+ * @swagger
+ * /files/list:
+ *  get:
+ *      tags: [Files]
+ *      summary: Obtiene la lista con todos los archivos disponibles
+ *      responses:
+ *          200:
+ *              description: OK
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          type: object
+ *                          properties:
+ *                              files:
+ *                                  type: array
+ *                                  items:
+ *                                      type: string
+ *                                      example: test1.csv
+ */

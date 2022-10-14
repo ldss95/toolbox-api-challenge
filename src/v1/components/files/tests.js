@@ -66,6 +66,29 @@ describe('Archivos', () => {
     })
   })
 
+  describe('GET /files/data?fileName=test2.csv', () => {
+    it('Deberia obtener archivo test2.csv en formato JSON', async () => {
+      const { body, status } = await chai.request(app)
+        .get('/v1/files/data?fileName=test2.csv')
+
+      assert.equal(status, 200)
+      expect(body).to.be.an('array')
+
+      // Validamos el primer elemento
+      const [firstFile] = body
+      expect(firstFile).to.have.property('file')
+      expect(firstFile.file).to.be.an('string')
+      expect(firstFile).to.have.property('lines')
+      expect(firstFile.lines).to.be.an('array')
+
+      // Validamos la primera linea del primer elemento
+      const [firstline] = firstFile.lines
+      expect(firstline).to.have.property('text')
+      expect(firstline).to.have.property('number')
+      expect(firstline).to.have.property('hex')
+    })
+  })
+
   describe('GET /files/list', () => {
     it('Deberia obtener una lista de archivos disponibles', async () => {
       const { body, status } = await chai.request(app)

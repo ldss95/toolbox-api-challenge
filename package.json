@@ -28,6 +28,10 @@
   "devDependencies": {
     "chai": "^4.3.6",
     "mocha": "^10.0.0",
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.20",
+    "standart": "^6.1.0"
+  },
+  "eslintConfig": {
+    "extends": "./node_modules/standart/eslintrc.json"
   }
 }

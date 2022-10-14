@@ -26,7 +26,7 @@ export async function getSecretFileList() {
         const data = JSON.parse(buffer.toString())
 
         // Si la respuesta no es 200 lanza error
-        if (statusCode.toString().charAt(0) !== 2) {
+        if (statusCode.toString().charAt(0) !== '2') {
           return reject(new ExternalAPIError(res.statusCode, data.message))
         }
 

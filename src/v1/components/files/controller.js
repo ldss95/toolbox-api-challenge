@@ -1,13 +1,16 @@
-import { getFormatedFiles, getSecretFileList } from './services.js'
-import { ExternalAPIError } from '../../errors.js'
+import { getFormatedFiles, getSecretFileList, getFormatedSpecificFile } from './services.js'
+import { CustomError, ExternalAPIError } from '../../errors.js'
 
 export default {
   getData: async (req, res) => {
     try {
-      const data = await getFormatedFiles()
+      const { fileName } = req.query
+      const data = (fileName)
+        ? await getFormatedSpecificFile(fileName)
+        : await getFormatedFiles()
       res.status(200).send(data)
     } catch (error) {
-      if (error instanceof ExternalAPIError) {
+      if (error instanceof ExternalAPIError || error instanceof CustomError) {
         return res.status(error.status).send({
           message: error.message
         })

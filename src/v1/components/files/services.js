@@ -1,3 +1,4 @@
+import { CustomError } from '../../errors.js'
 import { externalAPI } from '../../utils/http.js'
 
 export async function getSecretFileList() {
@@ -24,6 +25,17 @@ export async function getFormatedFiles() {
     .map(csv2JSON)
 
   return files
+}
+
+export async function getFormatedSpecificFile(name) {
+  const file = await getFileContent(name)
+
+  const lines = file.split('\n')
+  if (lines.length <= 1) {
+    throw new CustomError(400, 'Invalid file')
+  }
+
+  return [csv2JSON(file)]
 }
 
 function csv2JSON(file) {

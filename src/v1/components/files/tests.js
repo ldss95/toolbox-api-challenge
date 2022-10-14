@@ -4,7 +4,7 @@ import chai, { assert, expect } from 'chai'
 import chaiHttp from 'chai-http'
 chai.use(chaiHttp)
 
-import { downloadFile, getSecretFileList } from './services.js'
+import { getFileContent, getFormatedFiles, getSecretFileList } from './services.js'
 
 describe('Archivos', () => {
   describe('Lista de archivos', () => {
@@ -19,7 +19,26 @@ describe('Archivos', () => {
     })
 
     it('Deberia descargar 1 arcihvo del API externa', async () => {
-      await downloadFile('test1.csv')
+      const file = await getFileContent('test3.csv')
+      assert.typeOf(file, 'string')
+    })
+
+    it('Deberia obtener todos los archivos en formato JSON', async () => {
+      const files = await getFormatedFiles()
+      expect(files).to.be.an('array')
+
+      // Validamos el primer elemento
+      const [firstFile] = files
+      expect(firstFile).to.have.property('file')
+      expect(firstFile.file).to.be.an('string')
+      expect(firstFile).to.have.property('lines')
+      expect(firstFile.lines).to.be.an('array')
+
+      // Validamos la primera linea del primer elemento
+      const [firstline] = firstFile.lines
+      expect(firstline).to.have.property('text')
+      expect(firstline).to.have.property('number')
+      expect(firstline).to.have.property('hex')
     })
   })
 })

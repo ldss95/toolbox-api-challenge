@@ -2,11 +2,12 @@
 
 Esta API sirve como middleware entre un [API externa](https://echo-serv.tbxnet.com/explorer/#/Secret/get_secret_file__name_) y un cliente construido en React, la funcion principal del API es convertir la data provista en formato csv a JSON para su facil consumo del lado del cliente.
 
-Para su construccion se usó Express y la version `14 de Node JS`
-<br>
+## Construido con
+* Node JS 14
+* Express 4
 <br>
 
-### Documentacion Swagger
+## Documentacion Swagger
 Este proyecto esta documentado con Swagger JS Doc, podras ver la documentacion una vez levantes el servidor en el siguiente enlace:       
 http://localhost:3000/v1/docs/
 <br>

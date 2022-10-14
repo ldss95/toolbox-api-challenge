@@ -13,7 +13,14 @@ export async function getFileContent(name) {
 
 export async function getFormatedFiles() {
   const { files: fileList } = await getSecretFileList()
-  const results = await Promise.allSettled(fileList.map(fileName => getFileContent(fileName)))
+
+  /**
+   * Usando un array de promesas en vez de un loop se hacen todas las llamadas al API externa
+   * en paralelo, agilizando la respuesta
+   */
+  const results = await Promise.allSettled(
+    fileList.map(fileName => getFileContent(fileName))
+  )
 
   const files = results
     .filter(({ status }) => status === 'fulfilled') // Descartra requests fallidas (Not Found)
